@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NekoAsuka - Novel & Official Site</title>
+    <title>NekoAsuka - Official Site</title>
+    <!-- Tailwind CSS & FontAwesome CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -12,15 +13,18 @@
 </head>
 <body class="min-h-screen pb-12">
 
+    <!-- 頂部導覽列 (語言切換) -->
     <header class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
         <div class="text-sm font-semibold tracking-wider text-slate-400">NEKO ASUKA SITE</div>
+        <!-- 語言切換選單 -->
         <div class="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg p-1 text-xs">
-            <button onclick="setLanguage('zh')" id="lang-zh" class="px-3 py-1 rounded bg-sky-500 text-white transition">中文</button>
-            <button onclick="setLanguage('ja')" id="lang-ja" class="px-3 py-1 rounded hover:text-sky-400 transition">日本語</button>
+            <button onclick="setLanguage('ja')" id="lang-ja" class="px-3 py-1 rounded bg-sky-500 text-white transition">日本語</button>
+            <button onclick="setLanguage('zh')" id="lang-zh" class="px-3 py-1 rounded hover:text-sky-400 transition">中文</button>
             <button onclick="setLanguage('en')" id="lang-en" class="px-3 py-1 rounded hover:text-sky-400 transition">English</button>
         </div>
     </header>
 
+    <!-- 頂部 Hero 區塊 -->
     <div class="relative w-full h-56 bg-slate-800 bg-cover bg-center" style="background-image: url('https://picsum.photos/1200/400');">
         <div class="absolute inset-0 bg-black/40"></div>
         <div class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
@@ -30,83 +34,91 @@
         </div>
     </div>
 
+    <!-- 個人資訊與統計數據 -->
     <div class="mt-14 text-center px-4 max-w-2xl mx-auto">
         <h1 class="text-2xl font-bold tracking-wide">NekoAsuka <span class="text-sm font-normal text-slate-400">@Liyou_maga</span></h1>
-        <p class="text-slate-400 text-xs mt-0.5" id="bio-penname">筆名：狸柚 (Riyu)</p>
+        <p class="text-slate-400 text-xs mt-0.5" id="bio-penname">ペンネーム：狸柚 (Riyu)</p>
         <p class="mt-3 text-slate-300 text-sm leading-relaxed" id="bio-desc">
-            以青春的光與影、日常中的小小奇蹟為主題，撰寫小說。<br>願有一字能觸及某人的心。
+            青春の光と影、日常の中の小さな奇跡をテーマに、小説を執筆中。<br>願わくは、一言でも誰かの心に届きますように。
         </p>
         
+        <!-- 統計數據卡片 -->
         <div class="flex flex-wrap justify-center items-center gap-6 mt-6 py-3 px-6 bg-slate-800/80 rounded-2xl w-fit mx-auto border border-slate-700 shadow-md">
             <div class="text-center">
-                <span class="block text-xs text-slate-400" id="label-following">追蹤中</span>
+                <span class="block text-xs text-slate-400" id="label-following">フォロー中</span>
                 <span class="font-bold text-slate-200">86</span>
             </div>
             <div class="w-px h-6 bg-slate-700"></div>
             <div class="text-center">
-                <span class="block text-xs text-slate-400" id="label-followers">追蹤者</span>
+                <span class="block text-xs text-slate-400" id="label-followers">フォロワー</span>
                 <span class="font-bold text-slate-200">40</span>
             </div>
             <div class="w-px h-6 bg-slate-700"></div>
+            <!-- 實時總觀看數 -->
             <div class="text-center">
-                <span class="block text-xs text-slate-400" id="label-views">小說總觀看數</span>
+                <span class="block text-xs text-slate-400" id="label-views">小説総閲覧数</span>
                 <span id="total-views" class="font-bold text-sky-400">1,248</span>
             </div>
             <a href="https://x.com/Liyou_maga" target="_blank" class="ml-2 bg-sky-500 hover:bg-sky-600 text-white text-xs px-4 py-1.5 rounded-full font-medium transition">
-                <i class="fa-brands font-semibold fa-x-twitter mr-1"></i> <span id="btn-follow">追蹤</span>
+                <i class="fa-brands font-semibold fa-x-twitter mr-1"></i> <span id="btn-follow">フォロー</span>
             </a>
         </div>
     </div>
 
+    <!-- 主要內容區 -->
     <main class="max-w-5xl mx-auto mt-10 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         
+        <!-- 左側：小說連載區 (點擊可直達 Syosetu 小說頁面) -->
         <section class="md:col-span-2 space-y-6">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
-                    <i class="fa-solid fa-book-open text-sky-400"></i> <span id="section-novel-title">最新小說連載</span>
+                    <i class="fa-solid fa-book-open text-sky-400"></i> <span id="section-novel-title">最新連載小説</span>
                 </h2>
                 <span class="text-xs text-slate-400" id="status-ongoing">連載中</span>
             </div>
 
+            <!-- 小說章節 1 -->
             <article class="bg-slate-800/50 border border-slate-800 hover:border-slate-700 rounded-xl p-5 transition shadow-sm">
                 <div class="flex justify-between items-start mb-2">
-                    <span class="text-xs bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-latest">最新章節</span>
+                    <span class="text-xs bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-latest">最新話</span>
                     <time class="text-xs text-slate-500">2026-08-28</time>
                 </div>
-                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch1-title">
-                    100日問答 - 第 21 章：夕陽下的約定
+                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch1-title" onclick="openSyosetu('ch1-views')">
+                    私の人形が人間に変わってしまった件について - 第 21 話
                 </h3>
                 <p class="text-slate-400 text-sm mt-2 line-clamp-2" id="ch1-desc">
-                    夕陽餘暉灑在教室的課桌上，看著眼前逐漸擁有溫度的她，心中那份隱約的情感終於無法再掩飾……
+                    夕日がつくる教室の影。温もりを宿し始めた彼女を前に、秘めていた感情が溢れ出していく……
                 </p>
                 <div class="mt-4 flex justify-between items-center text-xs">
-                    <span class="text-slate-500"><i class="fa-regular fa-eye mr-1"></i><span id="ch1-views">842</span> <span id="label-times">次觀看</span></span>
-                    <button onclick="readChapter('ch1-views')" class="text-sky-400 hover:underline font-medium" id="btn-read1">閱讀全文 &rarr;</button>
+                    <span class="text-slate-500"><i class="fa-regular fa-eye mr-1"></i><span id="ch1-views">842</span> <span id="label-times">回閲覧</span></span>
+                    <button onclick="openSyosetu('ch1-views')" class="text-sky-400 hover:underline font-medium" id="btn-read1">全文を読む &rarr;</button>
                 </div>
             </article>
 
+            <!-- 小說章節 2 -->
             <article class="bg-slate-800/50 border border-slate-800 hover:border-slate-700 rounded-xl p-5 transition shadow-sm">
                 <div class="flex justify-between items-start mb-2">
-                    <span class="text-xs bg-slate-700 text-slate-300 px-2.5 py-0.5 rounded-full" id="tag-ch2">第 20 章</span>
+                    <span class="text-xs bg-slate-700 text-slate-300 px-2.5 py-0.5 rounded-full" id="tag-ch2">第 20 話</span>
                     <time class="text-xs text-slate-500">2026-08-20</time>
                 </div>
-                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch2-title">
-                    100日問答 - 第 20 章：雨後的旋律
+                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch2-title" onclick="openSyosetu('ch2-views')">
+                    私の人形が人間に変わってしまった件について - 第 20 話
                 </h3>
                 <p class="text-slate-400 text-sm mt-2 line-clamp-2" id="ch2-desc">
-                    雨後的夏日街道帶有微微的潮濕氣息，耳機裡播放著熟悉的旋律，這是一段關於約定與尋找的故事……
+                    雨上がりの夏街に漂う潮風。イヤホンから流れる懐かしいメロディとともに巡る、約束の物語……
                 </p>
                 <div class="mt-4 flex justify-between items-center text-xs">
-                    <span class="text-slate-500"><i class="fa-regular fa-eye mr-1"></i><span id="ch2-views">406</span> <span id="label-times2">次觀看</span></span>
-                    <button onclick="readChapter('ch2-views')" class="text-sky-400 hover:underline font-medium" id="btn-read2">閱讀全文 &rarr;</button>
+                    <span class="text-slate-500"><i class="fa-regular fa-eye mr-1"></i><span id="ch2-views">406</span> <span id="label-times2">回閲覧</span></span>
+                    <button onclick="openSyosetu('ch2-views')" class="text-sky-400 hover:underline font-medium" id="btn-read2">全文を読む &rarr;</button>
                 </div>
             </article>
         </section>
 
+        <!-- 右側：X (Twitter) 實時貼文區 -->
         <section class="space-y-4">
             <div class="border-b border-slate-800 pb-3">
                 <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
-                    <i class="fa-brands fa-x-twitter text-sky-400"></i> <span id="section-x-title">X 最新動態</span>
+                    <i class="fa-brands fa-x-twitter text-sky-400"></i> <span id="section-x-title">X 最新ポスト</span>
                 </h2>
             </div>
             
@@ -118,34 +130,36 @@
                    href="https://twitter.com/Liyou_maga?ref_src=twsrc%5Etfw">
                    Loading @Liyou_maga's posts...
                 </a> 
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
         </section>
 
     </main>
 
+    <!-- JavaScript 腳本 -->
     <script>
+        // 你的 Syosetu 個人首頁網址
+        const SYOSETU_URL = "https://mypage.syosetu.com/3063118/";
+
+        // 點擊閱讀：累計瀏覽次數並開啟小說網站
+        function openSyosetu(chapterViewId) {
+            // 章節次數 +1
+            const chElem = document.getElementById(chapterViewId);
+            let currentChViews = parseInt(chElem.innerText.replace(/,/g, ''));
+            currentChViews += 1;
+            chElem.innerText = currentChViews.toLocaleString();
+
+            // 總次數 +1
+            const totalElem = document.getElementById('total-views');
+            let currentTotalViews = parseInt(totalElem.innerText.replace(/,/g, ''));
+            currentTotalViews += 1;
+            totalElem.innerText = currentTotalViews.toLocaleString();
+
+            // 在新分頁開啟你的 Syosetu 小說頁面
+            window.open(SYOSETU_URL, '_blank');
+        }
+
         // 語系文本資料庫
         const translations = {
-            zh: {
-                bioPenname: "筆名：狸柚 (Riyu)",
-                bioDesc: "以青春的光與影、日常中的小小奇蹟為主題，撰寫小說。<br>願有一字能觸及某人的心。",
-                following: "追蹤中",
-                followers: "追蹤者",
-                views: "小說總觀看數",
-                btnFollow: "追蹤",
-                sectionNovel: "最新小說連載",
-                statusOngoing: "連載中",
-                tagLatest: "最新章節",
-                tagCh2: "第 20 章",
-                ch1Title: "100日問答 - 第 21 章：夕陽下的約定",
-                ch1Desc: "夕陽餘暉灑在教室的課桌上，看著眼前逐漸擁有溫度的她，心中那份隱約的情感終於無法再掩飾……",
-                ch2Title: "100日問答 - 第 20 章：雨後的旋律",
-                ch2Desc: "雨後的夏日街道帶有微微的潮濕氣息，耳機裡播放著熟悉的旋律，這是一段關於約定與尋找的故事……",
-                btnRead: "閱讀全文 →",
-                labelTimes: "次觀看",
-                sectionX: "X 最新動態"
-            },
             ja: {
                 bioPenname: "ペンネーム：狸柚 (Riyu)",
                 bioDesc: "青春の光と影、日常の中の小さな奇跡をテーマに、小説を執筆中。<br>願わくは、一言でも誰かの心に届きますように。",
@@ -157,13 +171,32 @@
                 statusOngoing: "連載中",
                 tagLatest: "最新話",
                 tagCh2: "第 20 話",
-                ch1Title: "100日間の物語 - 第 21 話：夕暮れの約束",
+                ch1Title: "私の人形が人間に変わってしまった件について - 第 21 話",
                 ch1Desc: "夕日がつくる教室の影。温もりを宿し始めた彼女を前に、秘めていた感情が溢れ出していく……",
-                ch2Title: "100日間の物語 - 第 20 話：雨上がりのメロディ",
+                ch2Title: "私の人形が人間に変わってしまった件について - 第 20 話",
                 ch2Desc: "雨上がりの夏街に漂う潮風。イヤホンから流れる懐かしいメロディとともに巡る、約束の物語……",
                 btnRead: "全文を読む →",
                 labelTimes: "回閲覧",
                 sectionX: "X 最新ポスト"
+            },
+            zh: {
+                bioPenname: "筆名：狸柚 (Riyu)",
+                bioDesc: "以青春的光與影、日常中的小小奇蹟為主題，撰寫小說。<br>願有一字能觸及某人的心。",
+                following: "追蹤中",
+                followers: "追蹤者",
+                views: "小說總觀看數",
+                btnFollow: "追蹤",
+                sectionNovel: "最新小說連載",
+                statusOngoing: "連載中",
+                tagLatest: "最新章節",
+                tagCh2: "第 20 章",
+                ch1Title: "私の人形が人間に変わってしまった件について - 第 21 章",
+                ch1Desc: "夕陽餘暉灑在教室的課桌上，看著眼前逐漸擁有溫度的她，心中那份隱約的情感終於無法再掩飾……",
+                ch2Title: "私の人形が人間に変わってしまった件について - 第 20 章",
+                ch2Desc: "雨後的夏日街道帶有微微的潮濕氣息，耳機裡播放著熟悉的旋律，這是一段關於約定與尋找的故事……",
+                btnRead: "閱讀全文 →",
+                labelTimes: "次觀看",
+                sectionX: "X 最新動態"
             },
             en: {
                 bioPenname: "Pen Name: Riyu (狸柚)",
@@ -176,9 +209,9 @@
                 statusOngoing: "Ongoing",
                 tagLatest: "Latest",
                 tagCh2: "Ch. 20",
-                ch1Title: "100 Days Story - Ch. 21: Sunset Promise",
+                ch1Title: "My Doll Turned into a Human - Ch. 21",
                 ch1Desc: "As the sunset painted the classroom desks, I could no longer hide my feelings for her...",
-                ch2Title: "100 Days Story - Ch. 20: Melody After Rain",
+                ch2Title: "My Doll Turned into a Human - Ch. 20",
                 ch2Desc: "The faint scent of rain lingers in the air as a familiar melody plays in my earphones...",
                 btnRead: "Read Story →",
                 labelTimes: "views",
@@ -209,8 +242,8 @@
             document.getElementById('label-times2').innerText = t.labelTimes;
             document.getElementById('section-x-title').innerText = t.sectionX;
 
-            // 按鈕高亮樣式變更
-            ['zh', 'ja', 'en'].forEach(l => {
+            // 高亮當前語言按鈕
+            ['ja', 'zh', 'en'].forEach(l => {
                 const btn = document.getElementById(`lang-${l}`);
                 if (l === lang) {
                     btn.className = "px-3 py-1 rounded bg-sky-500 text-white transition";
@@ -220,22 +253,14 @@
             });
         }
 
-        // 實時更新觀看數 logic
-        function readChapter(chapterViewId) {
-            // 該章節數值 + 1
-            const chElem = document.getElementById(chapterViewId);
-            let currentChViews = parseInt(chElem.innerText.replace(/,/g, ''));
-            currentChViews += 1;
-            chElem.innerText = currentChViews.toLocaleString();
-
-            // 總觀看數 + 1
-            const totalElem = document.getElementById('total-views');
-            let currentTotalViews = parseInt(totalElem.innerText.replace(/,/g, ''));
-            currentTotalViews += 1;
-            totalElem.innerText = currentTotalViews.toLocaleString();
-
-            alert('閱讀介面開啟中…（觀看次數已實時累計 +1）');
-        }
+        // 強制加載 X Widget (修復 GitHub Pages 顯示)
+        window.onload = function() {
+            const script = document.createElement('script');
+            script.src = "https://platform.twitter.com/widgets.js";
+            script.charset = "utf-8";
+            script.async = true;
+            document.body.appendChild(script);
+        };
     </script>
 </body>
 </html>

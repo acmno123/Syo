@@ -1,77 +1,81 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NekoAsuka - Official Portfolio</title>
+    <title>狸柚 (Riyu) - Official Portfolio</title>
     <!-- Tailwind CSS & FontAwesome CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { 
-            background: #090d16; 
-            color: #f8fafc; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            transition: background-color 0.3s, color 0.3s;
         }
         .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .glass-card {
-            background: rgba(30, 41, 59, 0.4);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-card:hover {
-            background: rgba(30, 41, 59, 0.75);
-            border-color: rgba(56, 189, 248, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.15);
         }
     </style>
 </head>
-<body class="min-h-screen pb-16 selection:bg-sky-500 selection:text-white">
+<body class="min-h-screen pb-16 bg-slate-950 text-slate-100 dark:bg-slate-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-900 selection:bg-sky-500 selection:text-white">
 
     <!-- 頂部導覽列 -->
-    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-6 py-3.5">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 bg-slate-900/80 dark:bg-slate-900/80 dark:border-slate-800/80 px-6 py-3.5">
+        <div class="max-w-6xl mx-auto flex justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-500 p-0.5">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-500 p-0.5 shadow-md">
                     <img src="https://picsum.photos/100" alt="Avatar" class="w-full h-full rounded-full object-cover">
                 </div>
-                <span class="text-sm font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400">NEKO ASUKA</span>
+                <span class="text-base font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-indigo-300">狸柚 (Riyu)</span>
             </div>
-            <!-- 語言切換選單 -->
-            <div class="flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800 text-xs font-medium">
-                <button onclick="setLanguage('ja')" id="lang-ja" class="px-3 py-1.5 rounded-lg bg-sky-500 text-white shadow-sm transition">日本語</button>
-                <button onclick="setLanguage('zh')" id="lang-zh" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition">中文</button>
-                <button onclick="setLanguage('en')" id="lang-en" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition">EN</button>
+
+            <!-- 控制面板：主題與語言切換 -->
+            <div class="flex items-center gap-2">
+                <button onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-800/80 border border-slate-700/60 text-amber-400 hover:text-amber-300 transition text-xs flex items-center gap-1.5 px-3">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    <span id="theme-text" class="hidden sm:inline font-medium">Dark</span>
+                </button>
+                <div class="flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800 text-xs font-medium">
+                    <button onclick="setLanguage('ja')" id="lang-ja" class="px-3 py-1.5 rounded-lg bg-sky-500 text-white shadow-sm transition">日本語</button>
+                    <button onclick="setLanguage('zh')" id="lang-zh" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition">中文</button>
+                    <button onclick="setLanguage('en')" id="lang-en" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition">EN</button>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- 頂部 Banner 與 個人簡介區塊 -->
+    <!-- 個人簡介區塊 -->
     <section class="relative">
         <div class="h-48 md:h-64 w-full bg-slate-900 overflow-hidden relative">
-            <img src="https://picsum.photos/1200/400" class="w-full h-full object-cover opacity-50 blur-[2px]">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/60 to-[#090d16]"></div>
+            <img src="https://picsum.photos/1200/400" class="w-full h-full object-cover opacity-40 blur-[2px]">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/60 to-slate-950"></div>
         </div>
 
         <div class="max-w-4xl mx-auto px-4 -mt-20 relative z-10 text-center">
             <div class="inline-block p-1 bg-slate-900 rounded-full shadow-2xl mb-3 border border-slate-700/50">
                 <img src="https://picsum.photos/200" alt="NekoAsuka" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover">
             </div>
-            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white">NekoAsuka <span class="text-sm font-normal text-sky-400 ml-1">@Liyou_maga</span></h1>
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white">刺客貓貓🎶 <span class="text-sm font-normal text-sky-400 ml-1">@Liyou_maga</span></h1>
             <p class="text-xs text-slate-400 mt-1 font-mono" id="bio-penname">ペンネーム：狸柚 (Riyu)</p>
             
             <p class="mt-3 text-sm text-slate-300 max-w-xl mx-auto leading-relaxed" id="bio-desc">
                 青春の光と影、日常の中の小さな奇跡をテーマに、小説を執筆中。<br>願わくは、一言でも誰かの心に届きますように。
             </p>
 
-            <!-- 數據指標列 -->
-            <div class="inline-flex items-center gap-6 mt-6 px-6 py-2.5 rounded-2xl glass-panel text-xs border border-slate-800">
+            <!-- 數據與社群按鈕 -->
+            <div class="inline-flex items-center gap-6 mt-6 px-6 py-2.5 rounded-2xl glass-panel bg-slate-900/60 border border-slate-800 text-xs">
                 <div class="text-center">
                     <span class="text-slate-400 block text-[10px] uppercase tracking-wider" id="label-following">フォロー中</span>
                     <span class="font-bold text-slate-200 text-sm">86</span>
@@ -94,268 +98,43 @@
         </div>
     </section>
 
-    <!-- 主要兩欄內容佈局 -->
+    <!-- 主要內容區塊 -->
     <main class="max-w-6xl mx-auto mt-12 px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        <!-- 左側：小說作品列表 (佔 2 欄) -->
+        <!-- 左側：小說作品區域 (2欄) -->
         <section class="lg:col-span-2 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
-                <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-layer-group text-sky-400"></i>
-                    <span id="section-novel-title">作品一覧</span>
-                    <span class="text-xs font-normal text-slate-500 bg-slate-800/60 px-2 py-0.5 rounded-full">全9件</span>
-                </h2>
-                <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-xs text-sky-400 hover:underline flex items-center gap-1">
-                    <span id="label-all-syosetu">マイページで見る</span> &rarr;
-                </a>
+            
+            <!-- 搜尋與動態過濾工具列 -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
+                <div class="flex items-center gap-2">
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-sky-400"></i>
+                        <span id="section-novel-title">作品一覧</span>
+                    </h2>
+                    <span id="novel-count" class="text-xs font-normal text-slate-400 bg-slate-800/60 px-2.5 py-0.5 rounded-full border border-slate-700/50">5件</span>
+                </div>
+
+                <!-- 搜尋框與狀態篩選 -->
+                <div class="flex items-center gap-2">
+                    <div class="relative flex-1 sm:w-48">
+                        <input type="text" id="search-input" oninput="filterNovels()" placeholder="検索..." class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-1.5 pl-8 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition">
+                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-slate-500 text-xs"></i>
+                    </div>
+                    <select id="filter-select" onchange="filterNovels()" class="bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-sky-500 transition cursor-pointer">
+                        <option value="all">すべて</option>
+                        <option value="ongoing">連載中</option>
+                        <option value="finished">完結済</option>
+                    </select>
+                </div>
             </div>
 
+            <!-- 小說卡片容器 -->
             <div class="space-y-3.5" id="novel-list">
-
-                <!-- 1. 代表作 -->
-                <article class="glass-card rounded-2xl p-5 relative overflow-hidden border-l-4 border-l-amber-400">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="text-[11px] font-bold bg-amber-400/10 text-amber-300 border border-amber-400/30 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                                <i class="fa-solid fa-crown text-[10px]"></i> <span id="tag-rep">代表作</span>
-                            </span>
-                            <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-ongoing-1">連載 (54話)</span>
-                        </div>
-                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-08-28</time>
-                    </div>
-                    
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(1)">
-                        隣の氷山先輩に、いつの間にかダメ人間へと飼い慣らされていた件
-                    </h3>
-
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <div class="flex items-center gap-2 text-slate-400">
-                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]" id="cat-1">現実世界 [恋愛]</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(1)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(1)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 2. 少女しかない世界 -->
-                <article class="glass-card rounded-2xl p-5">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full">連載 (18話)</span>
-                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-08-26</time>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(2)">
-                        《少女しかない世界で、僕だけが『伝説の存在』だった件》
-                    </h3>
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <div class="flex items-center gap-1.5 text-slate-400">
-                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]">異世界 [恋愛]</span>
-                            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-1.5 py-0.5 rounded text-[10px]">R15</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(2)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(2)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 3. 更新を一時停止しました -->
-                <article class="glass-card rounded-2xl p-5">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full">連載 (85話)</span>
-                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-08-07</time>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(3)">
-                        更新を一時停止しました「失いたくないから付き合えない」と振られたので、幼馴染の距離感を徹底的にバグらせることにした。～今更後悔しても遅いからな？～
-                    </h3>
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px] text-slate-400">現実世界 [恋愛]</span>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(3)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(3)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 4. 幼馴染の越境アラート -->
-                <article class="glass-card rounded-2xl p-5">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span class="text-[11px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">完結済 (27話)</span>
-                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-06-10</time>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(4)">
-                        幼馴染の越境アラート
-                    </h3>
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <div class="flex items-center gap-1.5 text-slate-400">
-                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]">現実世界 [恋愛]</span>
-                            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-1.5 py-0.5 rounded text-[10px]">R15</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(4)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(4)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 5. 私の人形が人間に変わってしまった件について -->
-                <article class="glass-card rounded-2xl p-5">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full">連載 (21話)</span>
-                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-05-15</time>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(5)">
-                        私の人形が人間に変わってしまった件について
-                    </h3>
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px] text-slate-400">現実世界 [恋愛]</span>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(5)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(5)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 6. 新增作品 n2583mn -->
-                <article class="glass-card rounded-2xl p-5">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full">連載作品</span>
-                        <span class="text-xs font-mono text-slate-500">n2583mn</span>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(6)">
-                        作品 (n2583mn)
-                    </h3>
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px] text-slate-400">小説家になろう</span>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(6)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(6)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://ncode.syosetu.com/n2583mn/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 7. 新增作品 n6564mp -->
-                <article class="glass-card rounded-2xl p-5">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full">連載作品</span>
-                        <span class="text-xs font-mono text-slate-500">n6564mp</span>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(7)">
-                        作品 (n6564mp)
-                    </h3>
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px] text-slate-400">小説家になろう</span>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(7)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(7)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://ncode.syosetu.com/n6564mp/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 8. 新增作品 n7083mj -->
-                <article class="glass-card rounded-2xl p-5">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full">連載作品</span>
-                        <span class="text-xs font-mono text-slate-500">n7083mj</span>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(8)">
-                        作品 (n7083mj)
-                    </h3>
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px] text-slate-400">小説家になろう</span>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(8)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(8)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://ncode.syosetu.com/n7083mj/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 9. 新增作品 n3354mg -->
-                <article class="glass-card rounded-2xl p-5">
-                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full">連載作品</span>
-                        <span class="text-xs font-mono text-slate-500">n3354mg</span>
-                    </div>
-                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(9)">
-                        作品 (n3354mg)
-                    </h3>
-                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
-                        <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px] text-slate-400">小説家になろう</span>
-                        <div class="flex items-center gap-3">
-                            <button onclick="openPreview(9)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
-                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
-                            </button>
-                            <button onclick="openReader(9)" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
-                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
-                            </button>
-                            <a href="https://ncode.syosetu.com/n3354mg/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
-                                <span class="btn-read-text">原頁面</span> &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
+                <!-- 由 JavaScript 自動動態渲染卡片 -->
             </div>
         </section>
 
-        <!-- 右側：X (Twitter) 實時貼文區 (佔 1 欄) -->
+        <!-- 右側：X (Twitter) 社群動態 (1欄) -->
         <section class="space-y-4">
             <div class="border-b border-slate-800/80 pb-3">
                 <h2 class="text-lg font-bold text-white flex items-center gap-2">
@@ -364,7 +143,7 @@
                 </h2>
             </div>
             
-            <div class="glass-panel rounded-2xl p-2 min-h-[500px] border border-slate-800" id="x-container">
+            <div class="glass-panel bg-slate-900/50 rounded-2xl p-2 min-h-[550px] border border-slate-800/80" id="x-container">
                 <a class="twitter-timeline" 
                    data-height="550" 
                    data-theme="dark" 
@@ -379,7 +158,7 @@
 
     <!-- 小說簡介預覽 Modal 彈窗 -->
     <div id="preview-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
-        <div class="glass-panel rounded-2xl max-w-lg w-full p-6 space-y-4 border border-slate-700/60 shadow-2xl relative">
+        <div class="glass-panel bg-slate-900/90 rounded-2xl max-w-lg w-full p-6 space-y-4 border border-slate-700/60 shadow-2xl relative">
             <button onclick="closePreview()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
@@ -395,76 +174,169 @@
         </div>
     </div>
 
-    <!-- 站內閱讀器 (內嵌 iframe 視窗) -->
-    <div id="reader-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-lg hidden flex flex-col z-50">
-        <div class="glass-panel px-6 py-3 border-b border-slate-800 flex justify-between items-center">
+    <!-- 全螢幕站內閱讀器 Modal -->
+    <div id="reader-modal" class="fixed inset-0 bg-slate-950/95 backdrop-blur-lg hidden flex flex-col z-50">
+        <div class="glass-panel bg-slate-900/90 px-6 py-3 border-b border-slate-800 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono">Syosetu Reader</span>
+                <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-0.5 rounded font-mono">Syosetu Reader</span>
                 <h3 id="reader-title" class="text-sm font-bold text-slate-200 truncate max-w-md">小說閱讀</h3>
             </div>
-            <button onclick="closeReader()" class="px-3 py-1.5 bg-rose-500/20 hover:bg-rose-500/40 text-rose-300 rounded-xl transition text-xs font-semibold flex items-center gap-1">
-                <i class="fa-solid fa-xmark"></i> 關閉閱讀器
-            </button>
+            <div class="flex items-center gap-2">
+                <a id="reader-external-btn" href="#" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl transition text-xs font-medium flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> 原廠視窗
+                </a>
+                <button onclick="closeReader()" class="px-3 py-1.5 bg-rose-500/20 hover:bg-rose-500/40 text-rose-300 rounded-xl transition text-xs font-semibold flex items-center gap-1">
+                    <i class="fa-solid fa-xmark"></i> 關閉閱讀器
+                </button>
+            </div>
         </div>
         <div class="flex-1 w-full h-full bg-white relative">
             <iframe id="reader-frame" class="w-full h-full border-0" src="" title="Novel Content"></iframe>
         </div>
     </div>
 
-    <!-- JavaScript 腳本 -->
+    <!-- JavaScript 功能邏輯 -->
     <script>
-        // 全部 9 部小說的完整資料庫
-        const novelData = {
-            1: {
+        // 精簡後的 5 部核心小說資料庫
+        const novels = [
+            {
+                id: 1,
                 title: "隣の氷山先輩に、いつの間にかダメ人間へと飼い慣らされていた件",
                 content: "クールで完璧主義と恐れられる『氷山先輩』。しかし、ひょんなことから始まった隣人生活で、彼女の隠された甘やかし本質が全開に……？気付けば俺は、彼女なしでは生きていけないダメ人間になっていて——",
-                url: "https://mypage.syosetu.com/3063118/"
+                url: "https://mypage.syosetu.com/3063118/",
+                status: "ongoing",
+                episodes: "54話",
+                date: "2026-08-28",
+                category: "現実世界 [恋愛]",
+                isRep: true
             },
-            2: {
+            {
+                id: 2,
                 title: "《少女しかない世界で、僕だけが『伝説の存在』だった件》",
                 content: "男性が存在しない異世界へと転移してしまった主人公。そこでは『男』という存在自体が神話や伝説の中でしか語られない未知の存在だった。伝説の存在として少女たちに囲まれる波乱の異世界生活が始まる。",
-                url: "https://mypage.syosetu.com/3063118/"
+                url: "https://mypage.syosetu.com/3063118/",
+                status: "ongoing",
+                episodes: "18話",
+                date: "2026-08-26",
+                category: "異世界 [恋愛]",
+                isR15: true,
+                isWarning: true
             },
-            3: {
-                title: "更新を一時停止しました「失いたくないから付き合えない」と振られたので、幼馴染の距離感を徹底的にバグらせることにした。",
+            {
+                id: 3,
+                title: "更新を一時停止しました「失いたくないから付き合えない」と振られたので、幼馴染の距離感を徹底的にバグらせることにした。～今更後悔しても遅いからな？～",
                 content: "「関係を壊したくないから」という理由で振られた主人公。それならと、幼馴染としての距離感を一変させることに。今まで通りの甘えが通じなくなった彼女は、少しずつ自分の本当の気持ちに気付き始める……",
-                url: "https://mypage.syosetu.com/3063118/"
+                url: "https://mypage.syosetu.com/3063118/",
+                status: "ongoing",
+                episodes: "85話",
+                date: "2026-08-07",
+                category: "現実世界 [恋愛]"
             },
-            4: {
+            {
+                id: 4,
                 title: "幼馴染の越境アラート",
                 content: "一線を越えてはいけないはずの幼馴染という関係。しかし、成長とともに変化していく互いの視線と距離感が、二人の間に設定された防衛線を静かに揺るがしていく。",
-                url: "https://mypage.syosetu.com/3063118/"
+                url: "https://mypage.syosetu.com/3063118/",
+                status: "finished",
+                episodes: "27話",
+                date: "2026-06-10",
+                category: "現実世界 [恋愛]",
+                isR15: true
             },
-            5: {
+            {
+                id: 5,
                 title: "私の人形が人間に変わってしまった件について",
                 content: "夕日がつくる教室の影。いつも側にいたはずの人形が、ある日突然温もりを持つ『人間』へと姿を変えた。戸惑いと愛おしさが交錯する中で紡がれる、100日間の奇蹟の物語。",
-                url: "https://mypage.syosetu.com/3063118/"
-            },
-            6: {
-                title: "作品 (n2583mn)",
-                content: "『n2583mn』の作品詳細・あらすじページです。下のボタンから「小説家になろう」の畫面で直接閱讀できます。",
-                url: "https://ncode.syosetu.com/n2583mn/"
-            },
-            7: {
-                title: "作品 (n6564mp)",
-                content: "『n6564mp』の作品詳細・あらすじページです。下のボタンから「小説家になろう」の畫面で直接閱讀できます。",
-                url: "https://ncode.syosetu.com/n6564mp/"
-            },
-            8: {
-                title: "作品 (n7083mj)",
-                content: "『n7083mj』の作品詳細・あらすじページです。下のボタンから「小説家になろう」の畫面で直接閱讀できます。",
-                url: "https://ncode.syosetu.com/n7083mj/"
-            },
-            9: {
-                title: "作品 (n3354mg)",
-                content: "『n3354mg』の作品詳細・あらすじページです。下のボタンから「小説家になろう」の畫面で直接閱讀できます。",
-                url: "https://ncode.syosetu.com/n3354mg/"
+                url: "https://mypage.syosetu.com/3063118/",
+                status: "ongoing",
+                episodes: "21話",
+                date: "2026-05-15",
+                category: "現実世界 [恋愛]"
             }
-        };
+        ];
 
-        // 開啟簡介預覽
+        let currentLang = 'ja';
+
+        // 渲染小說卡片
+        function renderNovels(list) {
+            const container = document.getElementById('novel-list');
+            document.getElementById('novel-count').innerText = `${list.length}件`;
+            container.innerHTML = '';
+
+            if (list.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-slate-500 text-sm">該当する作品が見つかりませんでした。</div>`;
+                return;
+            }
+
+            list.forEach(item => {
+                const card = document.createElement('article');
+                card.className = `glass-card bg-slate-900/40 border border-slate-800/80 rounded-2xl p-5 relative overflow-hidden ${item.isRep ? 'border-l-4 border-l-amber-400' : ''}`;
+                
+                const statusBadge = item.status === 'finished' 
+                    ? `<span class="text-[11px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">完結済 (${item.episodes})</span>`
+                    : `<span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full">連載 (${item.episodes})</span>`;
+
+                const repBadge = item.isRep 
+                    ? `<span class="text-[11px] font-bold bg-amber-400/10 text-amber-300 border border-amber-400/30 px-2.5 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-crown text-[10px]"></i> 代表作</span>`
+                    : '';
+
+                const r15Badge = item.isR15 ? `<span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-1.5 py-0.5 rounded text-[10px]">R15</span>` : '';
+                const warningBadge = item.isWarning ? `<span class="text-slate-500 text-[11px]">残酷描写あり</span>` : '';
+
+                card.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <div class="flex items-center gap-2">
+                            ${repBadge}
+                            ${statusBadge}
+                        </div>
+                        <time class="text-xs text-slate-500 font-mono">最終更新日：${item.date}</time>
+                    </div>
+                    
+                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(${item.id})">
+                        ${item.title}
+                    </h3>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
+                        <div class="flex items-center gap-1.5 text-slate-400">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]">${item.category}</span>
+                            ${r15Badge}
+                            ${warningBadge}
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="openPreview(${item.id})" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
+                            </button>
+                            <button onclick="openReader(${item.id})" class="text-emerald-400 hover:text-emerald-300 font-medium transition flex items-center gap-1">
+                                <i class="fa-solid fa-book-open"></i> <span class="btn-inline-text">站內閱讀</span>
+                            </button>
+                            <a href="${item.url}" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
+                                <span class="btn-read-text">原頁面</span> &rarr;
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            updateLabels();
+        }
+
+        // 搜尋與篩選邏輯
+        function filterNovels() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filter = document.getElementById('filter-select').value;
+
+            const filtered = novels.filter(n => {
+                const matchesSearch = n.title.toLowerCase().includes(query) || n.category.toLowerCase().includes(query);
+                const matchesFilter = filter === 'all' || n.status === filter;
+                return matchesSearch && matchesFilter;
+            });
+
+            renderNovels(filtered);
+        }
+
+        // 預覽與閱讀器 Modal 操作
         function openPreview(id) {
-            const data = novelData[id];
+            const data = novels.find(n => n.id === id);
             document.getElementById('modal-title').innerText = data.title;
             document.getElementById('modal-body').innerText = data.content;
             document.getElementById('btn-modal-go').href = data.url;
@@ -479,11 +351,11 @@
             document.getElementById('preview-modal').classList.add('hidden');
         }
 
-        // 開啟站內閱讀器 (iframe 載入小説家畫面)
         function openReader(id) {
-            const data = novelData[id];
+            const data = novels.find(n => n.id === id);
             document.getElementById('reader-title').innerText = data.title;
             document.getElementById('reader-frame').src = data.url;
+            document.getElementById('reader-external-btn').href = data.url;
             document.getElementById('reader-modal').classList.remove('hidden');
         }
 
@@ -492,7 +364,24 @@
             document.getElementById('reader-frame').src = "";
         }
 
-        // 語系文本資料庫
+        // 暗黑/明亮主題切換
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = "fa-solid fa-sun";
+                text.innerText = "Light";
+            } else {
+                html.classList.add('dark');
+                icon.className = "fa-solid fa-moon";
+                text.innerText = "Dark";
+            }
+        }
+
+        // 多語系支援
         const translations = {
             ja: {
                 bioPenname: "ペンネーム：狸柚 (Riyu)",
@@ -501,10 +390,8 @@
                 followers: "フォロワー",
                 btnFollow: "フォロー",
                 sectionNovel: "作品一覧",
-                labelAllSyosetu: "マイページで見る",
-                tagRep: "代表作",
                 btnPrev: "あらすじ預覽",
-                btnInline: "內聯閱讀",
+                btnInline: "站內閱讀",
                 btnRead: "原頁面",
                 sectionX: "X 最新ポスト",
                 modalClose: "閉じる"
@@ -516,8 +403,6 @@
                 followers: "追蹤者",
                 btnFollow: "追蹤",
                 sectionNovel: "作品列表",
-                labelAllSyosetu: "前往主頁查看",
-                tagRep: "代表作",
                 btnPrev: "故事簡介",
                 btnInline: "站內閱讀",
                 btnRead: "原頁面",
@@ -531,8 +416,6 @@
                 followers: "Followers",
                 btnFollow: "Follow",
                 sectionNovel: "Novels",
-                labelAllSyosetu: "View Profile",
-                tagRep: "Featured",
                 btnPrev: "Synopsis",
                 btnInline: "Read Here",
                 btnRead: "Source Page",
@@ -542,6 +425,7 @@
         };
 
         function setLanguage(lang) {
+            currentLang = lang;
             const t = translations[lang];
             document.getElementById('bio-penname').innerText = t.bioPenname;
             document.getElementById('bio-desc').innerHTML = t.bioDesc;
@@ -549,20 +433,26 @@
             document.getElementById('label-followers').innerText = t.followers;
             document.getElementById('btn-follow').innerText = t.btnFollow;
             document.getElementById('section-novel-title').innerText = t.sectionNovel;
-            document.getElementById('label-all-syosetu').innerText = t.labelAllSyosetu;
-            if(document.getElementById('tag-rep')) document.getElementById('tag-rep').innerText = t.tagRep;
             document.getElementById('section-x-title').innerText = t.sectionX;
             document.getElementById('btn-modal-close').innerText = t.modalClose;
-
-            document.querySelectorAll('.btn-prev-text').forEach(el => el.innerText = t.btnPrev);
-            document.querySelectorAll('.btn-inline-text').forEach(el => el.innerText = t.btnInline);
-            document.querySelectorAll('.btn-read-text').forEach(el => el.innerText = t.btnRead);
 
             ['ja', 'zh', 'en'].forEach(l => {
                 const btn = document.getElementById(`lang-${l}`);
                 btn.className = l === lang ? "px-3 py-1.5 rounded-lg bg-sky-500 text-white shadow-sm transition" : "px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition";
             });
+
+            updateLabels();
         }
+
+        function updateLabels() {
+            const t = translations[currentLang];
+            document.querySelectorAll('.btn-prev-text').forEach(el => el.innerText = t.btnPrev);
+            document.querySelectorAll('.btn-inline-text').forEach(el => el.innerText = t.btnInline);
+            document.querySelectorAll('.btn-read-text').forEach(el => el.innerText = t.btnRead);
+        }
+
+        // 初始化
+        renderNovels(novels);
 
         // 動態加載 X Widget 腳本
         (function loadTwitter() {

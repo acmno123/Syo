@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NekoAsuka - Official Site</title>
-    <!-- Tailwind CSS & FontAwesome CDN -->
+    <!-- Tailwind CSS & FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,10 +13,9 @@
 </head>
 <body class="min-h-screen pb-12">
 
-    <!-- 頂部導覽列 (語言切換) -->
+    <!-- 頂部導覽列 -->
     <header class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
         <div class="text-sm font-semibold tracking-wider text-slate-400">NEKO ASUKA SITE</div>
-        <!-- 語言切換選單 -->
         <div class="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg p-1 text-xs">
             <button onclick="setLanguage('ja')" id="lang-ja" class="px-3 py-1 rounded bg-sky-500 text-white transition">日本語</button>
             <button onclick="setLanguage('zh')" id="lang-zh" class="px-3 py-1 rounded hover:text-sky-400 transition">中文</button>
@@ -34,7 +33,7 @@
         </div>
     </div>
 
-    <!-- 個人資訊與統計數據 -->
+    <!-- 個人資訊與統計 -->
     <div class="mt-14 text-center px-4 max-w-2xl mx-auto">
         <h1 class="text-2xl font-bold tracking-wide">NekoAsuka <span class="text-sm font-normal text-slate-400">@Liyou_maga</span></h1>
         <p class="text-slate-400 text-xs mt-0.5" id="bio-penname">ペンネーム：狸柚 (Riyu)</p>
@@ -42,7 +41,7 @@
             青春の光と影、日常の中の小さな奇跡をテーマに、小説を執筆中。<br>願わくは、一言でも誰かの心に届きますように。
         </p>
         
-        <!-- 統計數據卡片 -->
+        <!-- 數據統計卡片 -->
         <div class="flex flex-wrap justify-center items-center gap-6 mt-6 py-3 px-6 bg-slate-800/80 rounded-2xl w-fit mx-auto border border-slate-700 shadow-md">
             <div class="text-center">
                 <span class="block text-xs text-slate-400" id="label-following">フォロー中</span>
@@ -54,10 +53,11 @@
                 <span class="font-bold text-slate-200">40</span>
             </div>
             <div class="w-px h-6 bg-slate-700"></div>
-            <!-- 實時總觀看數 -->
             <div class="text-center">
-                <span class="block text-xs text-slate-400" id="label-views">小説総閲覧数</span>
-                <span id="total-views" class="font-bold text-sky-400">1,248</span>
+                <span class="block text-xs text-slate-400" id="label-views">小説家になろう</span>
+                <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="font-bold text-sky-400 hover:underline flex items-center gap-1 justify-center">
+                    <span id="total-views">主頁連結</span> <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
             </div>
             <a href="https://x.com/Liyou_maga" target="_blank" class="ml-2 bg-sky-500 hover:bg-sky-600 text-white text-xs px-4 py-1.5 rounded-full font-medium transition">
                 <i class="fa-brands font-semibold fa-x-twitter mr-1"></i> <span id="btn-follow">フォロー</span>
@@ -68,7 +68,7 @@
     <!-- 主要內容區 -->
     <main class="max-w-5xl mx-auto mt-10 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- 左側：小說連載區 (點擊可直達 Syosetu 小說頁面) -->
+        <!-- 左側：小說連載區 -->
         <section class="md:col-span-2 space-y-6">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
@@ -83,15 +83,15 @@
                     <span class="text-xs bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-latest">最新話</span>
                     <time class="text-xs text-slate-500">2026-08-28</time>
                 </div>
-                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch1-title" onclick="openSyosetu('ch1-views')">
+                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch1-title" onclick="openPreview(1)">
                     私の人形が人間に変わってしまった件について - 第 21 話
                 </h3>
                 <p class="text-slate-400 text-sm mt-2 line-clamp-2" id="ch1-desc">
                     夕日がつくる教室の影。温もりを宿し始めた彼女を前に、秘めていた感情が溢れ出していく……
                 </p>
                 <div class="mt-4 flex justify-between items-center text-xs">
-                    <span class="text-slate-500"><i class="fa-regular fa-eye mr-1"></i><span id="ch1-views">842</span> <span id="label-times">回閲覧</span></span>
-                    <button onclick="openSyosetu('ch1-views')" class="text-sky-400 hover:underline font-medium" id="btn-read1">全文を読む &rarr;</button>
+                    <button onclick="openPreview(1)" class="text-slate-400 hover:text-sky-400"><i class="fa-solid fa-eye mr-1"></i><span id="btn-preview1">預覽</span></button>
+                    <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:underline font-medium" id="btn-read1">小説家になろうで読む &rarr;</a>
                 </div>
             </article>
 
@@ -101,15 +101,15 @@
                     <span class="text-xs bg-slate-700 text-slate-300 px-2.5 py-0.5 rounded-full" id="tag-ch2">第 20 話</span>
                     <time class="text-xs text-slate-500">2026-08-20</time>
                 </div>
-                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch2-title" onclick="openSyosetu('ch2-views')">
+                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch2-title" onclick="openPreview(2)">
                     私の人形が人間に変わってしまった件について - 第 20 話
                 </h3>
                 <p class="text-slate-400 text-sm mt-2 line-clamp-2" id="ch2-desc">
                     雨上がりの夏街に漂う潮風。イヤホンから流れる懐かしいメロディとともに巡る、約束の物語……
                 </p>
                 <div class="mt-4 flex justify-between items-center text-xs">
-                    <span class="text-slate-500"><i class="fa-regular fa-eye mr-1"></i><span id="ch2-views">406</span> <span id="label-times2">回閲覧</span></span>
-                    <button onclick="openSyosetu('ch2-views')" class="text-sky-400 hover:underline font-medium" id="btn-read2">全文を読む &rarr;</button>
+                    <button onclick="openPreview(2)" class="text-slate-400 hover:text-sky-400"><i class="fa-solid fa-eye mr-1"></i><span id="btn-preview2">預覽</span></button>
+                    <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:underline font-medium" id="btn-read2">小説家になろうで読む &rarr;</a>
                 </div>
             </article>
         </section>
@@ -122,50 +122,65 @@
                 </h2>
             </div>
             
-            <div class="bg-slate-800/30 border border-slate-800 rounded-xl p-2 min-h-[400px]">
+            <div class="bg-slate-800/30 border border-slate-800 rounded-xl p-2 min-h-[500px]" id="x-container">
                 <a class="twitter-timeline" 
                    data-height="500" 
                    data-theme="dark" 
-                   data-chrome="noheader nofooter transparent"
+                   data-chrome="noheader nofooter transparent shadow"
                    href="https://twitter.com/Liyou_maga?ref_src=twsrc%5Etfw">
-                   Loading @Liyou_maga's posts...
+                   Posts by @Liyou_maga
                 </a> 
             </div>
         </section>
 
     </main>
 
-    <!-- JavaScript 腳本 -->
+    <!-- 小說預覽彈窗 (Modal) -->
+    <div id="preview-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closePreview()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <h3 id="modal-title" class="text-lg font-bold text-slate-100 border-b border-slate-800 pb-2"></h3>
+            <div id="modal-body" class="text-slate-300 text-sm leading-relaxed max-h-60 overflow-y-auto space-y-3 pr-2"></div>
+            <div class="pt-3 border-t border-slate-800 flex justify-between items-center">
+                <button onclick="closePreview()" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs rounded-lg transition">關閉</button>
+                <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="px-4 py-1.5 bg-sky-500 hover:bg-sky-600 text-xs text-white rounded-lg transition font-medium">前往小説家になろう閱讀全文 &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 邏輯 -->
     <script>
-        // 你的 Syosetu 個人首頁網址
-        const SYOSETU_URL = "https://mypage.syosetu.com/3063118/";
+        const SYOSETU_MAIN_URL = "https://mypage.syosetu.com/3063118/";
 
-        // 點擊閱讀：累計瀏覽次數並開啟小說網站
-        function openSyosetu(chapterViewId) {
-            // 章節次數 +1
-            const chElem = document.getElementById(chapterViewId);
-            let currentChViews = parseInt(chElem.innerText.replace(/,/g, ''));
-            currentChViews += 1;
-            chElem.innerText = currentChViews.toLocaleString();
+        const previewData = {
+            1: {
+                title: "私の人形が人間に変わってしまった件について - 第 21 話",
+                content: "夕日がつくる教室の影。課桌上投影著夕陽的餘暉。看著眼前逐漸擁有溫度的她，心中那份隱約的情感終於無法再掩飾……「如果這不是奇蹟，那又該稱作什麼呢？」"
+            },
+            2: {
+                title: "私の人形が人間に変わってしまった件について - 第 20 話",
+                content: "雨上がりの夏街に漂う潮風。耳機裡播放著熟悉的旋律，雨後的夏日街道帶有微微的潮濕氣息。這是一段關於約定與尋找的故事……"
+            }
+        };
 
-            // 總次數 +1
-            const totalElem = document.getElementById('total-views');
-            let currentTotalViews = parseInt(totalElem.innerText.replace(/,/g, ''));
-            currentTotalViews += 1;
-            totalElem.innerText = currentTotalViews.toLocaleString();
-
-            // 在新分頁開啟你的 Syosetu 小說頁面
-            window.open(SYOSETU_URL, '_blank');
+        function openPreview(id) {
+            const data = previewData[id];
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-body').innerText = data.content;
+            document.getElementById('preview-modal').classList.remove('hidden');
         }
 
-        // 語系文本資料庫
+        function closePreview() {
+            document.getElementById('preview-modal').classList.add('hidden');
+        }
+
         const translations = {
             ja: {
                 bioPenname: "ペンネーム：狸柚 (Riyu)",
                 bioDesc: "青春の光と影、日常の中の小さな奇跡をテーマに、小説を執筆中。<br>願わくは、一言でも誰かの心に届きますように。",
                 following: "フォロー中",
                 followers: "フォロワー",
-                views: "小説総閲覧数",
+                views: "小説家になろう",
                 btnFollow: "フォロー",
                 sectionNovel: "最新連載小説",
                 statusOngoing: "連載中",
@@ -175,8 +190,8 @@
                 ch1Desc: "夕日がつくる教室の影。温もりを宿し始めた彼女を前に、秘めていた感情が溢れ出していく……",
                 ch2Title: "私の人形が人間に変わってしまった件について - 第 20 話",
                 ch2Desc: "雨上がりの夏街に漂う潮風。イヤホンから流れる懐かしいメロディとともに巡る、約束の物語……",
-                btnRead: "全文を読む →",
-                labelTimes: "回閲覧",
+                btnRead: "小説家になろうで読む →",
+                btnPreview: "プレビュー",
                 sectionX: "X 最新ポスト"
             },
             zh: {
@@ -184,7 +199,7 @@
                 bioDesc: "以青春的光與影、日常中的小小奇蹟為主題，撰寫小說。<br>願有一字能觸及某人的心。",
                 following: "追蹤中",
                 followers: "追蹤者",
-                views: "小說總觀看數",
+                views: "小說家になろう",
                 btnFollow: "追蹤",
                 sectionNovel: "最新小說連載",
                 statusOngoing: "連載中",
@@ -194,8 +209,8 @@
                 ch1Desc: "夕陽餘暉灑在教室的課桌上，看著眼前逐漸擁有溫度的她，心中那份隱約的情感終於無法再掩飾……",
                 ch2Title: "私の人形が人間に変わってしまった件について - 第 20 章",
                 ch2Desc: "雨後的夏日街道帶有微微的潮濕氣息，耳機裡播放著熟悉的旋律，這是一段關於約定與尋找的故事……",
-                btnRead: "閱讀全文 →",
-                labelTimes: "次觀看",
+                btnRead: "前往小說家閱讀 →",
+                btnPreview: "預覽內文",
                 sectionX: "X 最新動態"
             },
             en: {
@@ -203,7 +218,7 @@
                 bioDesc: "Writing web novels focused on youth's light & shadow, and small everyday miracles.<br>May a single word reach someone's heart.",
                 following: "Following",
                 followers: "Followers",
-                views: "Total Novel Views",
+                views: "Syosetu Page",
                 btnFollow: "Follow",
                 sectionNovel: "Latest Novels",
                 statusOngoing: "Ongoing",
@@ -213,13 +228,12 @@
                 ch1Desc: "As the sunset painted the classroom desks, I could no longer hide my feelings for her...",
                 ch2Title: "My Doll Turned into a Human - Ch. 20",
                 ch2Desc: "The faint scent of rain lingers in the air as a familiar melody plays in my earphones...",
-                btnRead: "Read Story →",
-                labelTimes: "views",
+                btnRead: "Read on Syosetu →",
+                btnPreview: "Preview",
                 sectionX: "Latest X Posts"
             }
         };
 
-        // 語言切換處理
         function setLanguage(lang) {
             const t = translations[lang];
             document.getElementById('bio-penname').innerText = t.bioPenname;
@@ -238,29 +252,24 @@
             document.getElementById('ch2-desc').innerText = t.ch2Desc;
             document.getElementById('btn-read1').innerText = t.btnRead;
             document.getElementById('btn-read2').innerText = t.btnRead;
-            document.getElementById('label-times').innerText = t.labelTimes;
-            document.getElementById('label-times2').innerText = t.labelTimes;
+            document.getElementById('btn-preview1').innerText = t.btnPreview;
+            document.getElementById('btn-preview2').innerText = t.btnPreview;
             document.getElementById('section-x-title').innerText = t.sectionX;
 
-            // 高亮當前語言按鈕
             ['ja', 'zh', 'en'].forEach(l => {
                 const btn = document.getElementById(`lang-${l}`);
-                if (l === lang) {
-                    btn.className = "px-3 py-1 rounded bg-sky-500 text-white transition";
-                } else {
-                    btn.className = "px-3 py-1 rounded hover:text-sky-400 transition";
-                }
+                btn.className = l === lang ? "px-3 py-1 rounded bg-sky-500 text-white transition" : "px-3 py-1 rounded hover:text-sky-400 transition";
             });
         }
 
-        // 強制加載 X Widget (修復 GitHub Pages 顯示)
-        window.onload = function() {
+        // 強制加載 X Widget
+        (function loadTwitter() {
             const script = document.createElement('script');
             script.src = "https://platform.twitter.com/widgets.js";
             script.charset = "utf-8";
             script.async = true;
-            document.body.appendChild(script);
-        };
+            document.head.appendChild(script);
+        })();
     </script>
 </body>
 </html>

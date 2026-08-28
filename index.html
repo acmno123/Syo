@@ -3,128 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NekoAsuka - Official Site</title>
-    <!-- Tailwind CSS & FontAwesome -->
+    <title>NekoAsuka - Official Portfolio</title>
+    <!-- Tailwind CSS & FontAwesome CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+        body { 
+            background: #090d16; 
+            color: #f8fafc; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.75);
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.15);
+        }
     </style>
 </head>
-<body class="min-h-screen pb-12">
+<body class="min-h-screen pb-16 selection:bg-sky-500 selection:text-white">
 
     <!-- 頂部導覽列 -->
-    <header class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="text-sm font-semibold tracking-wider text-slate-400">NEKO ASUKA SITE</div>
-        <div class="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg p-1 text-xs">
-            <button onclick="setLanguage('ja')" id="lang-ja" class="px-3 py-1 rounded bg-sky-500 text-white transition">日本語</button>
-            <button onclick="setLanguage('zh')" id="lang-zh" class="px-3 py-1 rounded hover:text-sky-400 transition">中文</button>
-            <button onclick="setLanguage('en')" id="lang-en" class="px-3 py-1 rounded hover:text-sky-400 transition">English</button>
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-6 py-3.5">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-500 p-0.5">
+                    <img src="https://picsum.photos/100" alt="Avatar" class="w-full h-full rounded-full object-cover">
+                </div>
+                <span class="text-sm font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400">NEKO ASUKA</span>
+            </div>
+            <!-- 語言切換選單 -->
+            <div class="flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800 text-xs font-medium">
+                <button onclick="setLanguage('ja')" id="lang-ja" class="px-3 py-1.5 rounded-lg bg-sky-500 text-white shadow-sm transition">日本語</button>
+                <button onclick="setLanguage('zh')" id="lang-zh" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition">中文</button>
+                <button onclick="setLanguage('en')" id="lang-en" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition">EN</button>
+            </div>
         </div>
     </header>
 
-    <!-- 頂部 Hero 區塊 -->
-    <div class="relative w-full h-56 bg-slate-800 bg-cover bg-center" style="background-image: url('https://picsum.photos/1200/400');">
-        <div class="absolute inset-0 bg-black/40"></div>
-        <div class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-            <div class="w-20 h-20 rounded-full border-4 border-slate-900 overflow-hidden bg-slate-700 shadow-xl">
-                <img src="https://picsum.photos/200" alt="NekoAsuka" class="w-full h-full object-cover">
-            </div>
+    <!-- 頂部 Banner 與 個人簡介區塊 -->
+    <section class="relative">
+        <div class="h-48 md:h-64 w-full bg-slate-900 overflow-hidden relative">
+            <img src="https://picsum.photos/1200/400" class="w-full h-full object-cover opacity-50 blur-[2px]">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/60 to-[#090d16]"></div>
         </div>
-    </div>
 
-    <!-- 個人資訊與統計 -->
-    <div class="mt-14 text-center px-4 max-w-2xl mx-auto">
-        <h1 class="text-2xl font-bold tracking-wide">NekoAsuka <span class="text-sm font-normal text-slate-400">@Liyou_maga</span></h1>
-        <p class="text-slate-400 text-xs mt-0.5" id="bio-penname">ペンネーム：狸柚 (Riyu)</p>
-        <p class="mt-3 text-slate-300 text-sm leading-relaxed" id="bio-desc">
-            青春の光と影、日常の中の小さな奇跡をテーマに、小説を執筆中。<br>願わくは、一言でも誰かの心に届きますように。
-        </p>
-        
-        <!-- 數據統計卡片 -->
-        <div class="flex flex-wrap justify-center items-center gap-6 mt-6 py-3 px-6 bg-slate-800/80 rounded-2xl w-fit mx-auto border border-slate-700 shadow-md">
-            <div class="text-center">
-                <span class="block text-xs text-slate-400" id="label-following">フォロー中</span>
-                <span class="font-bold text-slate-200">86</span>
+        <div class="max-w-4xl mx-auto px-4 -mt-20 relative z-10 text-center">
+            <div class="inline-block p-1 bg-slate-900 rounded-full shadow-2xl mb-3 border border-slate-700/50">
+                <img src="https://picsum.photos/200" alt="NekoAsuka" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover">
             </div>
-            <div class="w-px h-6 bg-slate-700"></div>
-            <div class="text-center">
-                <span class="block text-xs text-slate-400" id="label-followers">フォロワー</span>
-                <span class="font-bold text-slate-200">40</span>
-            </div>
-            <div class="w-px h-6 bg-slate-700"></div>
-            <div class="text-center">
-                <span class="block text-xs text-slate-400" id="label-views">小説家になろう</span>
-                <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="font-bold text-sky-400 hover:underline flex items-center gap-1 justify-center">
-                    <span id="total-views">主頁連結</span> <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white">NekoAsuka <span class="text-sm font-normal text-sky-400 ml-1">@Liyou_maga</span></h1>
+            <p class="text-xs text-slate-400 mt-1 font-mono" id="bio-penname">ペンネーム：狸柚 (Riyu)</p>
+            
+            <p class="mt-3 text-sm text-slate-300 max-w-xl mx-auto leading-relaxed" id="bio-desc">
+                青春の光と影、日常の中の小さな奇跡をテーマに、小説を執筆中。<br>願わくは、一言でも誰かの心に届きますように。
+            </p>
+
+            <!-- 數據指標列 -->
+            <div class="inline-flex items-center gap-6 mt-6 px-6 py-2.5 rounded-2xl glass-panel text-xs border border-slate-800">
+                <div class="text-center">
+                    <span class="text-slate-400 block text-[10px] uppercase tracking-wider" id="label-following">フォロー中</span>
+                    <span class="font-bold text-slate-200 text-sm">86</span>
+                </div>
+                <div class="w-px h-6 bg-slate-800"></div>
+                <div class="text-center">
+                    <span class="text-slate-400 block text-[10px] uppercase tracking-wider" id="label-followers">フォロワー</span>
+                    <span class="font-bold text-slate-200 text-sm">40</span>
+                </div>
+                <div class="w-px h-6 bg-slate-800"></div>
+                <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="flex items-center gap-1.5 text-sky-400 hover:text-sky-300 font-semibold transition">
+                    <i class="fa-solid fa-book text-xs"></i>
+                    <span>小説家になろう</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+                <a href="https://x.com/Liyou_maga" target="_blank" class="ml-2 bg-sky-500 hover:bg-sky-400 text-white font-semibold px-3.5 py-1.5 rounded-xl transition shadow-lg shadow-sky-500/20">
+                    <i class="fa-brands fa-x-twitter mr-1"></i> <span id="btn-follow">フォロー</span>
                 </a>
             </div>
-            <a href="https://x.com/Liyou_maga" target="_blank" class="ml-2 bg-sky-500 hover:bg-sky-600 text-white text-xs px-4 py-1.5 rounded-full font-medium transition">
-                <i class="fa-brands font-semibold fa-x-twitter mr-1"></i> <span id="btn-follow">フォロー</span>
-            </a>
         </div>
-    </div>
+    </section>
 
-    <!-- 主要內容區 -->
-    <main class="max-w-5xl mx-auto mt-10 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- 主要兩欄內容佈局 -->
+    <main class="max-w-6xl mx-auto mt-12 px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        <!-- 左側：小說連載區 -->
-        <section class="md:col-span-2 space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
-                    <i class="fa-solid fa-book-open text-sky-400"></i> <span id="section-novel-title">最新連載小説</span>
+        <!-- 左側：小說作品列表 (佔 2 欄) -->
+        <section class="lg:col-span-2 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-sky-400"></i>
+                    <span id="section-novel-title">作品一覧</span>
+                    <span class="text-xs font-normal text-slate-500 bg-slate-800/60 px-2 py-0.5 rounded-full">全5件</span>
                 </h2>
-                <span class="text-xs text-slate-400" id="status-ongoing">連載中</span>
+                <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-xs text-sky-400 hover:underline flex items-center gap-1">
+                    <span id="label-all-syosetu">マイページで見る</span> &rarr;
+                </a>
             </div>
 
-            <!-- 小說章節 1 -->
-            <article class="bg-slate-800/50 border border-slate-800 hover:border-slate-700 rounded-xl p-5 transition shadow-sm">
-                <div class="flex justify-between items-start mb-2">
-                    <span class="text-xs bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-latest">最新話</span>
-                    <time class="text-xs text-slate-500">2026-08-28</time>
-                </div>
-                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch1-title" onclick="openPreview(1)">
-                    私の人形が人間に変わってしまった件について - 第 21 話
-                </h3>
-                <p class="text-slate-400 text-sm mt-2 line-clamp-2" id="ch1-desc">
-                    夕日がつくる教室の影。温もりを宿し始めた彼女を前に、秘めていた感情が溢れ出していく……
-                </p>
-                <div class="mt-4 flex justify-between items-center text-xs">
-                    <button onclick="openPreview(1)" class="text-slate-400 hover:text-sky-400"><i class="fa-solid fa-eye mr-1"></i><span id="btn-preview1">預覽</span></button>
-                    <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:underline font-medium" id="btn-read1">小説家になろうで読む &rarr;</a>
-                </div>
-            </article>
+            <div class="space-y-3.5" id="novel-list">
+                <!-- 1. 代表作 -->
+                <article class="glass-card rounded-2xl p-5 relative overflow-hidden border-l-4 border-l-amber-400">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[11px] font-bold bg-amber-400/10 text-amber-300 border border-amber-400/30 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-crown text-[10px]"></i> <span id="tag-rep">代表作</span>
+                            </span>
+                            <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-ongoing-1">連載 (54話)</span>
+                        </div>
+                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-08-28</time>
+                    </div>
+                    
+                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(1)">
+                        隣の氷山先輩に、いつの間にかダメ人間へと飼い慣らされていた件
+                    </h3>
 
-            <!-- 小說章節 2 -->
-            <article class="bg-slate-800/50 border border-slate-800 hover:border-slate-700 rounded-xl p-5 transition shadow-sm">
-                <div class="flex justify-between items-start mb-2">
-                    <span class="text-xs bg-slate-700 text-slate-300 px-2.5 py-0.5 rounded-full" id="tag-ch2">第 20 話</span>
-                    <time class="text-xs text-slate-500">2026-08-20</time>
-                </div>
-                <h3 class="text-lg font-semibold text-slate-200 hover:text-sky-400 cursor-pointer" id="ch2-title" onclick="openPreview(2)">
-                    私の人形が人間に変わってしまった件について - 第 20 話
-                </h3>
-                <p class="text-slate-400 text-sm mt-2 line-clamp-2" id="ch2-desc">
-                    雨上がりの夏街に漂う潮風。イヤホンから流れる懐かしいメロディとともに巡る、約束の物語……
-                </p>
-                <div class="mt-4 flex justify-between items-center text-xs">
-                    <button onclick="openPreview(2)" class="text-slate-400 hover:text-sky-400"><i class="fa-solid fa-eye mr-1"></i><span id="btn-preview2">預覽</span></button>
-                    <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:underline font-medium" id="btn-read2">小説家になろうで読む &rarr;</a>
-                </div>
-            </article>
+                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
+                        <div class="flex items-center gap-2 text-slate-400">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]" id="cat-1">現実世界 [恋愛]</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="openPreview(1)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
+                            </button>
+                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
+                                <span class="btn-read-text">を読む</span> &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. 少女しかない世界 -->
+                <article class="glass-card rounded-2xl p-5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-ongoing-2">連載 (18話)</span>
+                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-08-26</time>
+                    </div>
+                    
+                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(2)">
+                        《少女しかない世界で、僕だけが『伝説の存在』だった件》
+                    </h3>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
+                        <div class="flex items-center gap-1.5 text-slate-400">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]" id="cat-2">異世界 [恋愛]</span>
+                            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-1.5 py-0.5 rounded text-[10px]">R15</span>
+                            <span class="text-slate-500 text-[11px]">残酷描写あり</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="openPreview(2)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
+                            </button>
+                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
+                                <span class="btn-read-text">を読む</span> &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. 更新を一時停止しました -->
+                <article class="glass-card rounded-2xl p-5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-ongoing-3">連載 (85話)</span>
+                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-08-07</time>
+                    </div>
+                    
+                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(3)">
+                        更新を一時停止しました「失いたくないから付き合えない」と振られたので、幼馴染の距離感を徹底的にバグらせることにした。～今更後悔しても遅いからな？～
+                    </h3>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
+                        <div class="flex items-center gap-2 text-slate-400">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]" id="cat-3">現実世界 [恋愛]</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="openPreview(3)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
+                            </button>
+                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
+                                <span class="btn-read-text">を読む</span> &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. 幼馴染の越境アラート -->
+                <article class="glass-card rounded-2xl p-5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[11px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full" id="tag-finished">完結済 (27話)</span>
+                        </div>
+                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-06-10</time>
+                    </div>
+                    
+                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(4)">
+                        幼馴染の越境アラート
+                    </h3>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
+                        <div class="flex items-center gap-1.5 text-slate-400">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]" id="cat-4">現実世界 [恋愛]</span>
+                            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 px-1.5 py-0.5 rounded text-[10px]">R15</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="openPreview(4)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
+                            </button>
+                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
+                                <span class="btn-read-text">を読む</span> &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. 私の人形が人間に変わってしまった件について -->
+                <article class="glass-card rounded-2xl p-5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span class="text-[11px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2.5 py-0.5 rounded-full" id="tag-ongoing-5">連載 (21話)</span>
+                        <time class="text-xs text-slate-500 font-mono">最終更新日：2026-05-15</time>
+                    </div>
+                    
+                    <h3 class="text-base font-bold text-slate-100 hover:text-sky-400 cursor-pointer transition leading-snug" onclick="openPreview(5)">
+                        私の人形が人間に変わってしまった件について
+                    </h3>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800/60 text-xs">
+                        <div class="flex items-center gap-2 text-slate-400">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-[11px]" id="cat-5">現実世界 [恋愛]</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="openPreview(5)" class="text-slate-400 hover:text-sky-400 transition flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> <span class="btn-prev-text">あらすじ預覽</span>
+                            </button>
+                            <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="text-sky-400 hover:text-sky-300 font-medium transition flex items-center gap-1">
+                                <span class="btn-read-text">を読む</span> &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
 
-        <!-- 右側：X (Twitter) 實時貼文區 -->
+        <!-- 右側：X (Twitter) 實時貼文區 (佔 1 欄) -->
         <section class="space-y-4">
-            <div class="border-b border-slate-800 pb-3">
-                <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
-                    <i class="fa-brands fa-x-twitter text-sky-400"></i> <span id="section-x-title">X 最新ポスト</span>
+            <div class="border-b border-slate-800/80 pb-3">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-brands fa-x-twitter text-sky-400"></i>
+                    <span id="section-x-title">X 最新ポスト</span>
                 </h2>
             </div>
             
-            <div class="bg-slate-800/30 border border-slate-800 rounded-xl p-2 min-h-[500px]" id="x-container">
+            <div class="glass-panel rounded-2xl p-2 min-h-[500px] border border-slate-800" id="x-container">
                 <a class="twitter-timeline" 
-                   data-height="500" 
+                   data-height="550" 
                    data-theme="dark" 
                    data-chrome="noheader nofooter transparent shadow"
                    href="https://twitter.com/Liyou_maga?ref_src=twsrc%5Etfw">
@@ -135,31 +275,44 @@
 
     </main>
 
-    <!-- 小說預覽彈窗 (Modal) -->
-    <div id="preview-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl relative">
-            <button onclick="closePreview()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 id="modal-title" class="text-lg font-bold text-slate-100 border-b border-slate-800 pb-2"></h3>
-            <div id="modal-body" class="text-slate-300 text-sm leading-relaxed max-h-60 overflow-y-auto space-y-3 pr-2"></div>
-            <div class="pt-3 border-t border-slate-800 flex justify-between items-center">
-                <button onclick="closePreview()" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs rounded-lg transition">關閉</button>
-                <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="px-4 py-1.5 bg-sky-500 hover:bg-sky-600 text-xs text-white rounded-lg transition font-medium">前往小説家になろう閱讀全文 &rarr;</a>
+    <!-- 小說預覽 Modal 彈窗 -->
+    <div id="preview-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
+        <div class="glass-panel rounded-2xl max-w-lg w-full p-6 space-y-4 border border-slate-700/60 shadow-2xl relative">
+            <button onclick="closePreview()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 id="modal-title" class="text-base font-bold text-white border-b border-slate-800 pb-3 pr-6"></h3>
+            <p id="modal-body" class="text-slate-300 text-sm leading-relaxed max-h-60 overflow-y-auto pr-2 font-normal"></p>
+            <div class="pt-3 border-t border-slate-800 flex justify-between items-center text-xs">
+                <button onclick="closePreview()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl transition font-medium" id="btn-modal-close">閉じる</button>
+                <a href="https://mypage.syosetu.com/3063118/" target="_blank" class="px-4 py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-xl transition font-semibold shadow-md shadow-sky-500/20" id="btn-modal-go">小説家になろうで読む &rarr;</a>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript 邏輯 -->
+    <!-- JavaScript 腳本 -->
     <script>
-        const SYOSETU_MAIN_URL = "https://mypage.syosetu.com/3063118/";
-
+        // 小說故事簡介資料
         const previewData = {
             1: {
-                title: "私の人形が人間に変わってしまった件について - 第 21 話",
-                content: "夕日がつくる教室の影。課桌上投影著夕陽的餘暉。看著眼前逐漸擁有溫度的她，心中那份隱約的情感終於無法再掩飾……「如果這不是奇蹟，那又該稱作什麼呢？」"
+                title: "隣の氷山先輩に、いつの間にかダメ人間へと飼い慣らされていた件",
+                content: "クールで完璧主義と恐れられる『氷山先輩』。しかし、ひょんなことから始まった隣人生活で、彼女の隠された甘やかし本質が全開に……？気付けば俺は、彼女なしでは生きていけないダメ人間になっていて——"
             },
             2: {
-                title: "私の人形が人間に変わってしまった件について - 第 20 話",
-                content: "雨上がりの夏街に漂う潮風。耳機裡播放著熟悉的旋律，雨後的夏日街道帶有微微的潮濕氣息。這是一段關於約定與尋找的故事……"
+                title: "《少女しかない世界で、僕だけが『伝説の存在』だった件》",
+                content: "男性が存在しない異世界へと転移してしまった主人公。そこでは『男』という存在自体が神話や伝説の中でしか語られない未知の存在だった。伝説の存在として少女たちに囲まれる波乱の異世界生活が始まる。"
+            },
+            3: {
+                title: "更新を一時停止しました「失いたくないから付き合えない」と振られたので、幼馴染の距離感を徹底的にバグらせることにした。",
+                content: "「関係を壊したくないから」という理由で振られた主人公。それならと、幼馴染としての距離感を一変させることに。今まで通りの甘えが通じなくなった彼女は、少しずつ自分の本当の気持ちに気付き始める……"
+            },
+            4: {
+                title: "幼馴染の越境アラート",
+                content: "一線を越えてはいけないはずの幼馴染という関係。しかし、成長とともに変化していく互いの視線と距離感が、二人の間に設定された防衛線を静かに揺るがしていく。"
+            },
+            5: {
+                title: "私の人形が人間に変わってしまった件について",
+                content: "夕日がつくる教室の影。いつも側にいたはずの人形が、ある日突然温もりを持つ『人間』へと姿を変えた。戸惑いと愛おしさが交錯する中で紡がれる、100日間の奇蹟の物語。"
             }
         };
 
@@ -174,63 +327,52 @@
             document.getElementById('preview-modal').classList.add('hidden');
         }
 
+        // 語系文本資料庫
         const translations = {
             ja: {
                 bioPenname: "ペンネーム：狸柚 (Riyu)",
                 bioDesc: "青春の光と影、日常の中の小さな奇跡をテーマに、小説を執筆中。<br>願わくは、一言でも誰かの心に届きますように。",
                 following: "フォロー中",
                 followers: "フォロワー",
-                views: "小説家になろう",
                 btnFollow: "フォロー",
-                sectionNovel: "最新連載小説",
-                statusOngoing: "連載中",
-                tagLatest: "最新話",
-                tagCh2: "第 20 話",
-                ch1Title: "私の人形が人間に変わってしまった件について - 第 21 話",
-                ch1Desc: "夕日がつくる教室の影。温もりを宿し始めた彼女を前に、秘めていた感情が溢れ出していく……",
-                ch2Title: "私の人形が人間に変わってしまった件について - 第 20 話",
-                ch2Desc: "雨上がりの夏街に漂う潮風。イヤホンから流れる懐かしいメロディとともに巡る、約束の物語……",
-                btnRead: "小説家になろうで読む →",
-                btnPreview: "プレビュー",
-                sectionX: "X 最新ポスト"
+                sectionNovel: "作品一覧",
+                labelAllSyosetu: "マイページで見る",
+                tagRep: "代表作",
+                btnPrev: "あらすじ預覽",
+                btnRead: "を読む",
+                sectionX: "X 最新ポスト",
+                modalClose: "閉じる",
+                modalGo: "小説家になろうで読む →"
             },
             zh: {
                 bioPenname: "筆名：狸柚 (Riyu)",
                 bioDesc: "以青春的光與影、日常中的小小奇蹟為主題，撰寫小說。<br>願有一字能觸及某人的心。",
                 following: "追蹤中",
                 followers: "追蹤者",
-                views: "小說家になろう",
                 btnFollow: "追蹤",
-                sectionNovel: "最新小說連載",
-                statusOngoing: "連載中",
-                tagLatest: "最新章節",
-                tagCh2: "第 20 章",
-                ch1Title: "私の人形が人間に変わってしまった件について - 第 21 章",
-                ch1Desc: "夕陽餘暉灑在教室的課桌上，看著眼前逐漸擁有溫度的她，心中那份隱約的情感終於無法再掩飾……",
-                ch2Title: "私の人形が人間に変わってしまった件について - 第 20 章",
-                ch2Desc: "雨後的夏日街道帶有微微的潮濕氣息，耳機裡播放著熟悉的旋律，這是一段關於約定與尋找的故事……",
-                btnRead: "前往小說家閱讀 →",
-                btnPreview: "預覽內文",
-                sectionX: "X 最新動態"
+                sectionNovel: "作品列表",
+                labelAllSyosetu: "前往主頁查看",
+                tagRep: "代表作",
+                btnPrev: "故事簡介",
+                btnRead: "閱讀全文",
+                sectionX: "X 最新動態",
+                modalClose: "關閉",
+                modalGo: "前往小說家網站閱讀 →"
             },
             en: {
                 bioPenname: "Pen Name: Riyu (狸柚)",
                 bioDesc: "Writing web novels focused on youth's light & shadow, and small everyday miracles.<br>May a single word reach someone's heart.",
                 following: "Following",
                 followers: "Followers",
-                views: "Syosetu Page",
                 btnFollow: "Follow",
-                sectionNovel: "Latest Novels",
-                statusOngoing: "Ongoing",
-                tagLatest: "Latest",
-                tagCh2: "Ch. 20",
-                ch1Title: "My Doll Turned into a Human - Ch. 21",
-                ch1Desc: "As the sunset painted the classroom desks, I could no longer hide my feelings for her...",
-                ch2Title: "My Doll Turned into a Human - Ch. 20",
-                ch2Desc: "The faint scent of rain lingers in the air as a familiar melody plays in my earphones...",
-                btnRead: "Read on Syosetu →",
-                btnPreview: "Preview",
-                sectionX: "Latest X Posts"
+                sectionNovel: "Novels",
+                labelAllSyosetu: "View Profile",
+                tagRep: "Featured",
+                btnPrev: "Synopsis",
+                btnRead: "Read Novel",
+                sectionX: "Latest X Posts",
+                modalClose: "Close",
+                modalGo: "Read on Syosetu →"
             }
         };
 
@@ -240,29 +382,24 @@
             document.getElementById('bio-desc').innerHTML = t.bioDesc;
             document.getElementById('label-following').innerText = t.following;
             document.getElementById('label-followers').innerText = t.followers;
-            document.getElementById('label-views').innerText = t.views;
             document.getElementById('btn-follow').innerText = t.btnFollow;
             document.getElementById('section-novel-title').innerText = t.sectionNovel;
-            document.getElementById('status-ongoing').innerText = t.statusOngoing;
-            document.getElementById('tag-latest').innerText = t.tagLatest;
-            document.getElementById('tag-ch2').innerText = t.tagCh2;
-            document.getElementById('ch1-title').innerText = t.ch1Title;
-            document.getElementById('ch1-desc').innerText = t.ch1Desc;
-            document.getElementById('ch2-title').innerText = t.ch2Title;
-            document.getElementById('ch2-desc').innerText = t.ch2Desc;
-            document.getElementById('btn-read1').innerText = t.btnRead;
-            document.getElementById('btn-read2').innerText = t.btnRead;
-            document.getElementById('btn-preview1').innerText = t.btnPreview;
-            document.getElementById('btn-preview2').innerText = t.btnPreview;
+            document.getElementById('label-all-syosetu').innerText = t.labelAllSyosetu;
+            document.getElementById('tag-rep').innerText = t.tagRep;
             document.getElementById('section-x-title').innerText = t.sectionX;
+            document.getElementById('btn-modal-close').innerText = t.modalClose;
+            document.getElementById('btn-modal-go').innerText = t.modalGo;
+
+            document.querySelectorAll('.btn-prev-text').forEach(el => el.innerText = t.btnPrev);
+            document.querySelectorAll('.btn-read-text').forEach(el => el.innerText = t.btnRead);
 
             ['ja', 'zh', 'en'].forEach(l => {
                 const btn = document.getElementById(`lang-${l}`);
-                btn.className = l === lang ? "px-3 py-1 rounded bg-sky-500 text-white transition" : "px-3 py-1 rounded hover:text-sky-400 transition";
+                btn.className = l === lang ? "px-3 py-1.5 rounded-lg bg-sky-500 text-white shadow-sm transition" : "px-3 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition";
             });
         }
 
-        // 強制加載 X Widget
+        // 動態加載 X Widget 腳本
         (function loadTwitter() {
             const script = document.createElement('script');
             script.src = "https://platform.twitter.com/widgets.js";
